@@ -1,21 +1,15 @@
-//constructor
-function Book(name, author, type){
+class Book{
+    constructor(name,author,type){
     this.name= name;
     this.author= author;
     this.type=type;
-
-
+    }
 }
 
-//display constructor
-function Display(){
+class Display{
     
-
-}
-
-//add methods to display prototype
-Display.prototype.add=function(book){
-    tablebody=document.getElementById('tablebody');
+    add(book){
+    let  tablebody=document.getElementById('tablebody');
     let uistring=`<tr>
   
     <td> ${book.name}</td>
@@ -26,27 +20,23 @@ Display.prototype.add=function(book){
   tablebody.innerHTML += uistring;
   
 }
+    
 
-
-
-
-Display.prototype.clear=function(){
+clear() {
     let libraryform= document.getElementById('libraryform');
     libraryform.reset();
+} 
 
-
-}
-
-Display.prototype.validate=function(book){
+validate (book) {
     if(book.name.length===0 || book.author.length===0){
         return false;
     }
     else{
         return true;
-    }
-}
 
-Display.prototype.show=function(type,displaymeassage){
+}
+}
+ show(type,displaymeassage){
     let meassage= document.getElementById('message')
     meassage.innerHTML +=`<div class="alert ${type} alert-warning alert-dismissible fade show" role="alert">
     <strong>Holy guacamole!</strong> ${displaymeassage}
@@ -58,9 +48,10 @@ Display.prototype.show=function(type,displaymeassage){
   },2000)
 }
 
+ }
 
 
-// add submit event listerner to form
+//
 let libraryform= document.getElementById('libraryform');
 libraryform.addEventListener('submit', libraryformsubmit);
 
@@ -88,17 +79,20 @@ function libraryformsubmit(e){
     }
 
     let book= new Book(name,author,type);
-console.log(book);
-let display= new Display();
-if(display.validate(book)){
-display.add(book);
-display.clear();
-display.show('sucess','your book has been successfully added')
+     console.log(book);
+    let display= new Display();
+
+    if(display.validate(book)){
+    
+        display.add(book);
+    display.clear();
+    display.show('sucess','your book has been successfully added')
+    
 }
-else{
+    else{
     //show error to the user
     display.show('danger','sorry you cannnot add book')
-}
+    }
 
 
     
